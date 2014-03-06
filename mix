@@ -6,7 +6,7 @@ import com.breezetrader.Context;
 import com.breezetrader.Strategy;
 import com.breezetrader.Strategy.OrderType;
 
-public class MyStrategy extends Strategy {
+public class Min extends Strategy {
 
 	boolean flag = false;
 	public void onEvent(Object object)
