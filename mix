@@ -64,7 +64,7 @@ public class mix extends Strategy {
 	{	
 			talib_init("macd","macd1", "12", "26","9", "US38259P5089", "currentValueDouble" );
 			talib_init("rsi","rsi1", "12", "US38259P5089", "currentValueDouble" );
-			context.setDataFrequency(1, Context.Frequency.MINUTE);
+			context.setDataFrequency(1, Context.Frequency.DAY);
 			context.setSymbols("US38259P5089");
 			context.setDataURL("http://localhost/landing/US38259P5089.csv");
 //			context.setDataURL("http://localhost/landing/US38259P5089.csv");
