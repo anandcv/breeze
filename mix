@@ -2,9 +2,9 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.breezetrader.strategy.Context;
-import com.breezetrader.strategy.Strategy;
-import com.breezetrader.strategy.Strategy.OrderType;
+import com.breezetrader..Context;
+import com.breezetrader.Strategy;
+import com.breezetrader.Strategy.OrderType;
 
 public class MyStrategy extends Strategy {
 
