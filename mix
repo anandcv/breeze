@@ -36,11 +36,11 @@ public class mix extends Strategy {
 		if(macd1 > macd1Hist)
 		{
 //			log("ordering");
-			log("ID: "+order(OrderType.Market,symbol, 10));
+//			log("ID: "+order(OrderType.Market,symbol, 10));
 //			log("ID: "+order(OrderType.Limit, Side.Buy, TIF.IOC, "EUR.USD", 10, BigDecimal.valueOf(1.4)));
 //			log("opening position: ");
 			
-//			openPositionOfTargetValue(symbol,BigDecimal.valueOf(1000));
+			openPositionOfTargetValue(symbol,BigDecimal.valueOf(1000));
 //			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(90));
 			log("openpositions: "+getPosition(symbol));
 //			if(getPosition(symbol)>400)
