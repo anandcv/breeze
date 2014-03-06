@@ -7,7 +7,7 @@ import com.breezetrader.OrderType;
 import com.breezetrader.Strategy;
 import com.breezetrader.Tick;
 
-public class Mix extends Strategy {
+public class mix extends Strategy {
 
 	
 	boolean flag = false;
