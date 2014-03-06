@@ -1,39 +1,48 @@
+
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import com.breezetrader.Context;
-import com.breezetrader.Strategy;
+import com.breezetrader.Event;
 import com.breezetrader.OrderType;
+import com.breezetrader.Strategy;
+import com.breezetrader.Tick;
 
-public class Mix extends Strategy {
+public class Max extends Strategy {
 
+	
 	boolean flag = false;
+	String symbol = "EUR.USD";
 	public void onEvent(Object object)
 	{
-		String symbol = "EUR.USD";
 		
 		double macd1 = talib_data("macd1" , "macd");
 		double macd1Hist = talib_data("macd1" , "macdhist");
-//		log("event callback");
+		double rsi1 = talib_data("rsi1");
 //		log("macd1: "+macd1);
 //		log("macd1hist: "+macd1Hist);
 //		log("macd1sig: "+macd1Sig);
-		if(!flag)
+/*		if(!flag)
 		{
+			
 			openPosition(symbol,10);
 			flag=true;
-		}
+//		}
+//*/		if(rsi1>70)
+//			log("rsi > 70");
+//		else if(rsi1<30)
+//			log("rsi < 30");
+//		else
+//			log("rsi = "+rsi1);
 		if(macd1 > macd1Hist)
 		{
 //			log("ordering");
-			log("ID: "+order(OrderType.Market, "EUR.USD", 10));
+			log("ID: "+order(OrderType.Market,symbol, 10));
 //			log("ID: "+order(OrderType.Limit, Side.Buy, TIF.IOC, "EUR.USD", 10, BigDecimal.valueOf(1.4)));
 //			log("opening position: ");
 			
-//			openPositionAOfTargetValue(symbol,BigDecimal.valueOf(1000));
+//			openPositionOfTargetValue(symbol,BigDecimal.valueOf(1000));
 //			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(90));
-			log("position :"+Integer.toString(getPosition(symbol)));
+			log("openpositions: "+getPosition(symbol));
 //			if(getPosition(symbol)>400)
 //			{
 //				closePosition(symbol, BigDecimal.valueOf(10));
@@ -42,7 +51,10 @@ public class Mix extends Strategy {
 		}
 		else
 		{
+//			order(OrderType.Limit, symbol, -10, BigDecimal.valueOf(530));
 //			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(50));
+			log("openpositions: "+getPosition(symbol));
+			closeAllPositions(symbol);
 				//log("current Time: "+getTimeStamp());
 		}
 			
@@ -50,14 +62,17 @@ public class Mix extends Strategy {
 	}
 	public void initialize(Context context)
 	{	
-		try {
-			dataSource("http://localhost/landing/EU0009652759.csv");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		
-		log("Init impl");
-		 talib_init("macd","macd1", "12", "26","9", "EU0009652759", "close" );
+			talib_init("macd","macd1", "12", "26","9", "EU0009652759", "currentValueDouble" );
+			talib_init("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
+			context.setDataFrequency(1, Context.Frequency.MINUTE);
+			context.setSymbols("EU0009652759");
+			context.setDataURL("http://localhost/landing/EU0009652759.csv");
+//			context.setDataURL("http://localhost/landing/US38259P5089.csv");
+			context.setPortfolioValue(BigDecimal.valueOf(100000));
+			context.setDataType(Event.Type.BAR);
+			context.setStartDate("03-9-2012");
+			context.setEndDate("31-10-2012");
+			log("Init impl");
+			
 	}
-	
 }
