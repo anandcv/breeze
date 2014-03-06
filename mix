@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.breezetrader..Context;
+import com.breezetrader.Context;
 import com.breezetrader.Strategy;
 import com.breezetrader.Strategy.OrderType;
 
