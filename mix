@@ -1,0 +1,63 @@
+import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import com.breezetrader.strategy.Context;
+import com.breezetrader.strategy.Strategy;
+import com.breezetrader.strategy.Strategy.OrderType;
+
+public class MyStrategy extends Strategy {
+
+	boolean flag = false;
+	public void onEvent(Object object)
+	{
+		String symbol = "EUR.USD";
+		
+		double macd1 = talib_data("macd1" , "macd");
+		double macd1Hist = talib_data("macd1" , "macdhist");
+//		log("event callback");
+//		log("macd1: "+macd1);
+//		log("macd1hist: "+macd1Hist);
+//		log("macd1sig: "+macd1Sig);
+		if(!flag)
+		{
+			openPosition(symbol,10);
+			flag=true;
+		}
+		if(macd1 > macd1Hist)
+		{
+//			log("ordering");
+			log("ID: "+order(OrderType.Market, "EUR.USD", 10));
+//			log("ID: "+order(OrderType.Limit, Side.Buy, TIF.IOC, "EUR.USD", 10, BigDecimal.valueOf(1.4)));
+//			log("opening position: ");
+			
+//			openPositionAOfTargetValue(symbol,BigDecimal.valueOf(1000));
+//			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(90));
+			log("position :"+Integer.toString(getPosition(symbol)));
+//			if(getPosition(symbol)>400)
+//			{
+//				closePosition(symbol, BigDecimal.valueOf(10));
+//				log("after close position :"+Integer.toString(getPosition(symbol)));
+//			}
+		}
+		else
+		{
+//			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(50));
+				//log("current Time: "+getTimeStamp());
+		}
+			
+		
+	}
+	public void initialize(Context context)
+	{	
+		try {
+			dataSource("http://localhost/landing/EU0009652759.csv");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		log("Init impl");
+		 talib_init("macd","macd1", "12", "26","9", "EU0009652759", "close" );
+	}
+	
+}
