@@ -11,7 +11,7 @@ public class Mix extends Strategy {
 
 	
 	boolean flag = false;
-	String symbol = "EUR.USD";
+	String symbol = "GOOG";
 	public void onEvent(Object object)
 	{
 		
@@ -27,7 +27,7 @@ public class Mix extends Strategy {
 			openPosition(symbol,10);
 			flag=true;
 //		}
-//*/		if(rsi1>70)
+*///		if(rsi1>70)
 //			log("rsi > 70");
 //		else if(rsi1<30)
 //			log("rsi < 30");
@@ -62,11 +62,11 @@ public class Mix extends Strategy {
 	}
 	public void initialize(Context context)
 	{	
-			talib_init("macd","macd1", "12", "26","9", "EU0009652759", "currentValueDouble" );
-			talib_init("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
+			talib_init("macd","macd1", "12", "26","9", "US38259P5089", "currentValueDouble" );
+			talib_init("rsi","rsi1", "12", "US38259P5089", "currentValueDouble" );
 			context.setDataFrequency(1, Context.Frequency.MINUTE);
-			context.setSymbols("EU0009652759");
-			context.setDataURL("http://localhost/landing/EU0009652759.csv");
+			context.setSymbols("US38259P5089");
+			context.setDataURL("http://localhost/landing/US38259P5089.csv");
 //			context.setDataURL("http://localhost/landing/US38259P5089.csv");
 			context.setPortfolioValue(BigDecimal.valueOf(100000));
 			context.setDataType(Event.Type.BAR);
