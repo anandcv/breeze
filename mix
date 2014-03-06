@@ -40,8 +40,8 @@ public class mix extends Strategy {
 //			log("ID: "+order(OrderType.Limit, Side.Buy, TIF.IOC, "EUR.USD", 10, BigDecimal.valueOf(1.4)));
 //			log("opening position: ");
 			
-			openPositionOfTargetValue(symbol,BigDecimal.valueOf(1000));
-//			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(90));
+//			openPositionOfTargetValue(symbol,BigDecimal.valueOf(1000));
+			openPositionOfTargetPercent(symbol,BigDecimal.valueOf(90));
 			log("openpositions: "+getPosition(symbol));
 //			if(getPosition(symbol)>400)
 //			{
