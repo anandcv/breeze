@@ -22,7 +22,7 @@ public class max extends Strategy {
 	{	
 			talib_init("macd","macd1", "12", "26","9", "EU0009652759", "currentValueDouble" );
 			talib_init("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
-			context.setDataFrequency(1, Context.Frequency.MINUTE);
+			context.setDataFrequency(2, Context.Frequency.WEEK);
 			context.setSymbols("EU0009652759");
 			context.setDataURL("http://localhost/landing/EU0009652759.csv");
 			context.setPortfolioValue(BigDecimal.valueOf(100000));
